@@ -1,0 +1,33 @@
+.player-container {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  grid-gap: 2px;
+  background-color: #c4e5f0; }
+
+.ai-container {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  grid-gap: 2px;
+  background-color: #fab3b0; }
+
+.carrier {
+  display: grid;
+  grid-template-rows: repeat(5, 30px);
+  grid-gap: 2px;
+  background-color: #6363e9; }
+
+.battleship {
+  display: grid;
+  grid-template-rows: repeat(4, 30px);
+  grid-gap: 2px;
+  background-color: #6363e9; }
+
+.cruiser {
+  display: grid;
+  grid-template-rows: repeat(3, 30px);
+  grid-gap: 2px;
+  background-color: #6363e9; }
+
+/*# sourceMappingURL=index.css.map */
