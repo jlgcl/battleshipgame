@@ -1,33 +1,68 @@
-.player-container {
+.player-container, .ai-container {
   display: grid;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
+  grid-template-columns: repeat(10, 35px);
+  grid-template-rows: repeat(10, 35px);
+  background-color: #331414;
   grid-gap: 2px;
-  background-color: #c4e5f0; }
+  position: relative; }
 
-.ai-container {
+.carrier, .battleship, .cruiser, .submarine, .destroyer {
   display: grid;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(10, 30px);
   grid-gap: 2px;
-  background-color: #fab3b0; }
+  background-color: #331414;
+  width: 80%;
+  margin-bottom: 20px;
+  grid-template-rows: 30px; }
+
+.containers {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid;
+  width: 80%; }
+
+.player-container {
+  left: 3%;
+  margin-right: 6%; }
+
+body {
+  background-color: #331414; }
+
+.board {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 15%; }
+
+.player-item {
+  background-color: #d6c770; }
+
+.ai-item {
+  background-color: #6b5d5d; }
+
+.ships {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border: 1px solid;
+  width: 200px;
+  height: 350px; }
+
+.ship-item {
+  background-color: #d6a852; }
 
 .carrier {
-  display: grid;
-  grid-template-rows: repeat(5, 30px);
-  grid-gap: 2px;
-  background-color: #6363e9; }
+  grid-template-columns: repeat(5, 30px); }
 
 .battleship {
-  display: grid;
-  grid-template-rows: repeat(4, 30px);
-  grid-gap: 2px;
-  background-color: #6363e9; }
+  grid-template-columns: repeat(4, 30px); }
 
 .cruiser {
-  display: grid;
-  grid-template-rows: repeat(3, 30px);
-  grid-gap: 2px;
-  background-color: #6363e9; }
+  grid-template-columns: repeat(3, 30px); }
+
+.submarine {
+  grid-template-columns: repeat(3, 30px); }
+
+.destroyer {
+  grid-template-columns: repeat(2, 30px); }
 
 /*# sourceMappingURL=index.css.map */

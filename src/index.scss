@@ -1,36 +1,96 @@
-.player-container {
+%container-template {
     display: grid;
-    grid-template-columns: repeat(10, 30px);
-    grid-template-rows: repeat(10, 30px);
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
+    background-color: rgb(51, 20, 20);
     grid-gap: 2px;
-    background-color: rgb(196, 229, 240);
+    position: relative;
+}
+
+%ship-template {
+    display: grid;
+    grid-gap: 2px;
+    background-color: rgb(51, 20, 20);
+    width: 80%;
+    margin-bottom: 20px;
+    grid-template-rows: 30px;
+}
+
+.containers {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid;
+    width: 80%;
+}
+
+.player-container {
+    left: 3%;
+    margin-right: 6%;
+}
+
+body {
+    background-color: rgb(51, 20, 20);
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 15%;
+
+}
+
+.player-container {
+    @extend %container-template;
+}
+
+.player-item {
+    background-color: rgb(214, 199, 112);
 }
 
 .ai-container {
-    display: grid;
-    grid-template-columns: repeat(10, 30px);
-    grid-template-rows: repeat(10, 30px);
-    grid-gap: 2px;
-    background-color: rgb(250, 179, 176);
+    @extend %container-template;
+}
+
+.ai-item {
+    background-color: #6b5d5d;
+}
+
+.ships {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border: 1px solid;
+    width: 200px;
+    height: 350px;
+}
+
+.ship-item {
+    background-color: rgb(214, 168, 82);
 }
 
 .carrier {
-    display: grid;
-    grid-template-rows: repeat(5, 30px);
-    grid-gap: 2px;
-    background-color: rgb(99, 99, 233);
+    @extend %ship-template;
+    grid-template-columns: repeat(5, 30px);
 }
 
 .battleship {
-    display: grid;
-    grid-template-rows: repeat(4, 30px);
-    grid-gap: 2px;
-    background-color: rgb(99, 99, 233);
+    @extend %ship-template;
+    grid-template-columns: repeat(4, 30px);
 }
 
 .cruiser {
-    display: grid;
-    grid-template-rows: repeat(3, 30px);
-    grid-gap: 2px;
-    background-color: rgb(99, 99, 233);
+    @extend %ship-template;
+    grid-template-columns: repeat(3, 30px);
+}
+
+.submarine {
+    @extend %ship-template;
+    grid-template-columns: repeat(3, 30px);
+}
+
+.destroyer {
+    @extend %ship-template;
+    grid-template-columns: repeat(2, 30px);
+
 }

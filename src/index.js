@@ -4,12 +4,15 @@
     Gameboard FF: place ships (using Ship function), receiveAttack (receives coordinates, determine if it hit a ship, then sends the 'hit' function to the correct ship)
     Player: take turns attacking
 
+    REMEMBER OOP:
+    - encapsulation, inheritance, abstraction, polymorphism
+
     REMEMBER SOLID:
     S: single Responsibility
     O: methods not open to modification, but extension only
     L: abstraction that can be instantiated broadly (birdsFly -> eagles -> chicken?)
     I: parent methods don't have properties that aren't needed in any instances
-    D: don't need to know the details of children implementation - create abstractions
+    D: don't need to depend on or know the details of children implementation - create abstractions
 
     REMEMBER FP:
     1) pure functions (try to use recursions)
@@ -19,6 +22,10 @@
     5) composition - inheritance required since we are working with ships
     6) avoid side effects
 */
+
+import {
+  Gameboard
+} from "./Gameboard";
 
 let gridCollection = document.getElementsByClassName("player-item");
 let grid = Array.from(gridCollection);
@@ -39,5 +46,8 @@ let board = [
 // may need an index finder to translate coordinate to grid # vice-versa.
 
 export {
+  board,
   grid
-}
+};
+
+Gameboard();

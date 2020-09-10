@@ -1,4 +1,6 @@
-function Ship(ship, orientIn, loc, strike) {
+// FF encapsulation
+export function Ship(ship, orientIn, loc, strike) {
+    let name = ship;
     let length = null;
     let orient = orientIn; // user input
     let location = loc; // array of coordinates, passed in from Gameboard during placement
@@ -21,17 +23,19 @@ function Ship(ship, orientIn, loc, strike) {
             break;
     }
     // potentially modularize the methods below (single responsibility)
-    hit = () => {
+    // hit() is called in Gameboard to mark the hit spot.
+    const hit = () => {
         if (location.find((coord) => coord == strike)) {
             // strike hits one of the placement coordinates (return true)
-            board[coord].innerHTML = "O"; // mark the hit location
+            grid[coord].innerHTML = "O"; // mark the hit location
             hitCount++;
         }
     };
-    isSunk = () => {
+    const isSunk = () => {
         if (hitCount === length) return true;
     };
     return {
+        name,
         length,
         orient,
     };
