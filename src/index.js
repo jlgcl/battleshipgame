@@ -14,7 +14,7 @@
     I: parent methods don't have properties that aren't needed in any instances
     D: don't need to depend on or know the details of children implementation - create abstractions
 
-    REMEMBER FP:
+    REMEMBER FP (NOT USED HERE):
     1) pure functions (try to use recursions)
     2) declarative (avoid statements & operators)
     3) immutability (pay attention to objects)
@@ -28,7 +28,9 @@ import {
 } from "./Gameboard";
 
 let gridCollection = document.getElementsByClassName("player-item");
+let aiCollection = document.getElementsByClassName("ai-item");
 let grid = Array.from(gridCollection);
+let aiGrid = Array.from(aiCollection);
 
 // reference board
 let board = [
@@ -47,7 +49,8 @@ let board = [
 
 export {
   board,
-  grid
+  grid,
+  aiGrid
 };
 
 Gameboard();

@@ -16,6 +16,13 @@
     grid-template-rows: 30px;
 }
 
+%item-template {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .containers {
     display: flex;
     flex-direction: row;
@@ -40,20 +47,20 @@ body {
 
 }
 
-.player-container {
+.player-container,
+.ai-container {
     @extend %container-template;
 }
 
 .player-item {
     background-color: rgb(214, 199, 112);
-}
-
-.ai-container {
-    @extend %container-template;
+    @extend %item-template;
 }
 
 .ai-item {
     background-color: #6b5d5d;
+    @extend %item-template;
+
 }
 
 .ships {
@@ -69,28 +76,11 @@ body {
     background-color: rgb(214, 168, 82);
 }
 
-.carrier {
-    @extend %ship-template;
-    grid-template-columns: repeat(5, 30px);
-}
-
-.battleship {
-    @extend %ship-template;
-    grid-template-columns: repeat(4, 30px);
-}
-
-.cruiser {
-    @extend %ship-template;
-    grid-template-columns: repeat(3, 30px);
-}
-
-.submarine {
-    @extend %ship-template;
-    grid-template-columns: repeat(3, 30px);
-}
-
+.carrier,
+.battleship,
+.cruiser,
+.submarine,
 .destroyer {
     @extend %ship-template;
-    grid-template-columns: repeat(2, 30px);
-
+    grid-template-columns: repeat(5, 30px);
 }

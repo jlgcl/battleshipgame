@@ -1,92 +1,52 @@
 import {
     board,
-    grid
+    grid,
+    aiGrid
 } from "./index.js";
 import {
     Ship
 } from "./Ship";
+import {
+    placeShip,
+    placeAIShip,
+    placeHoriz,
+    placeVert
+} from "./shipPlacement";
 
 let shipCollection = document.getElementsByClassName("ship-item");
 let shipSelect = Array.from(shipCollection);
 
 export function Gameboard() {
-    // ship placements - manual
-    let carrier = Ship("carrier", null, null, null);
-    let battleship = Ship("battleship", null, null, null);
-    let cruiser = Ship("cruiser", null, null, null);
-    let submarine = Ship("submarine", null, null, null);
-    let destroyer = Ship("destroyer", null, null, null);
+    // ship instances - player (manual)
+    let carrier = Ship("carrier");
+    let battleship = Ship("battleship");
+    let cruiser = Ship("cruiser");
+    let submarine = Ship("submarine");
+    let destroyer = Ship("destroyer");
     let ships = [carrier, battleship, cruiser, submarine, destroyer];
+    // ship instances - AI
+    let aiCarrier = Ship("carrier");
+    let aiBattleship = Ship("battleship");
+    let aiCruiser = Ship("cruiser");
+    let aiSubmarine = Ship("submarine");
+    let aiDestroyer = Ship("destroyer");
+    let aiShips = [aiCarrier, aiBattleship, aiCruiser, aiSubmarine, aiDestroyer];
 
-    shipSelect.map(select => {
-        select.addEventListener("click", (e) => {
-            for (let ship of ships) {
-                if (ship.name === select.parentNode.className) placeShip(ship);
-            }
-        })
-    })
+    shipSelector(ships);
+    placeShip(ships);
+    placeAIShip(aiShips);
 }
 
-function placeShip(ship) {
-    ship.orient = "horizontal"; // placeholder for testing
-    //console.log(ship);
-    grid.map(unit => {
-        unit.addEventListener("click", (e) => {
-            let index = grid.indexOf(unit);
-            if (ship.orient === "horizontal") {
-                placeHoriz(ship, index, e);
-            }
-            if (ship.orient === "vertical") {
-                placeVert(ship, index, e);
-            }
-        })
-    })
-}
-
-function placeHoriz(ship, index, e) {
-    console.log(ship);
-    let checker = 0;
-    if (e.target.innerHTML === "") {
-        // for-loop in series to check the x-limit
-        for (let i = index; i < index + ship.length; i++) {
-            if (grid[i].innerHTML === "" && xyFinder(i).i === xyFinder(index).i) {
-                checker++;
-            }
-        }
-        for (let i = index; i < index + ship.length; i++) {
-            if (checker === ship.length) {
-                grid[i].innerHTML = "X";
+function shipSelector(ships) {
+    var clickHandler = function (e) {
+        for (let ship of ships) {
+            if (ship.name === e.target.parentNode.className && ship.selected === "none") {
+                ship.selection = "staged";
             }
         }
     }
-}
-
-function placeVert(ship, index, e) {
-    let checker = 0;
-    if (e.target.innerHTML === "") {
-        for (let j = index; j < index + (10 * ship.length); j = j + 10) {
-            if (grid[j] !== undefined) {
-                if (grid[j].innerHTML === "" && xyFinder(j).j === xyFinder(index).j) {
-                    checker++;
-                }
-            }
-        }
-        for (let j = index; j < index + (10 * ship.length); j = j + 10) {
-            if (checker === ship.length && grid[j] !== undefined) {
-                grid[j].innerHTML = "X";
-            }
-        }
-    }
-}
-
-function xyFinder(index) {
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (index === board[i][j])
-                return {
-                    i,
-                    j
-                };
-        }
-    }
+    shipSelect.map((select) => {
+        // REMEMBER: this function's scope is lost inside the callback (closure)
+        select.addEventListener("click", clickHandler, false);
+    });
 }
