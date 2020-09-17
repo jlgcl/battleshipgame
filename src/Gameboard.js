@@ -12,6 +12,9 @@ import {
     placeHoriz,
     placeVert
 } from "./shipPlacement";
+import {
+    boardReset
+} from "./boardReset";
 
 let shipCollection = document.getElementsByClassName("ship-item");
 let shipSelect = Array.from(shipCollection);
@@ -35,6 +38,7 @@ export function Gameboard() {
     shipSelector(ships);
     placeShip(ships);
     placeAIShip(aiShips);
+    boardReset(ships);
 }
 
 function shipSelector(ships) {

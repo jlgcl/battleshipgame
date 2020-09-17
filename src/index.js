@@ -29,6 +29,9 @@ import {
 
 let gridCollection = document.getElementsByClassName("player-item");
 let aiCollection = document.getElementsByClassName("ai-item");
+let rotate = document.getElementsByClassName("rotate");
+let shipsDiv = document.getElementsByClassName("ships");
+let reset = document.getElementsByClassName("reset");
 let grid = Array.from(gridCollection);
 let aiGrid = Array.from(aiCollection);
 
@@ -50,7 +53,10 @@ let board = [
 export {
   board,
   grid,
-  aiGrid
+  aiGrid,
+  rotate,
+  shipsDiv,
+  reset
 };
 
 Gameboard();

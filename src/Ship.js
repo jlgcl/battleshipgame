@@ -4,7 +4,7 @@ export function Ship(ship) {
     let selected = "none";
     let orientation = "horizontal";
     let length = null;
-    let location = 0; // array of coordinates, passed in from Gameboard during placement
+    let location = []; // array of coordinates, passed in from Gameboard during placement
     let hitCount = 0;
     switch (ship) {
         case "carrier":
@@ -38,12 +38,17 @@ export function Ship(ship) {
         set orient(val) {
             if (val === "hozirontal" || val === "vertical") {
                 this.orientation = val;
-            } else {
-                throw "invalid input";
-            }
+            } else throw "invalid input";
         },
         set setPos(loc) {
-            this.location = loc;
+            if (Number.isInteger(loc)) {
+                let newLoc = location.concat(loc);
+                this.location = newLoc;
+            } else if (loc === "clear") {
+                let newLoc = [];
+                this.location = newLoc;
+                console.log(location);
+            } else throw "Invalid Input";
         },
         set selection(val) {
             this.selected = val;

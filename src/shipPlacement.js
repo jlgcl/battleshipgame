@@ -1,13 +1,23 @@
 import {
     grid,
     board,
-    aiGrid
+    aiGrid,
+    rotate,
+    shipsDiv
 } from "./index";
 
 // RESOLVED ISSUE: function saves previous ship selection to call stack
 // that's because ship event listener adds new unit.addEventListener whenever it's the ship is clicked (nested event listeners not good)
 function placeShip(ships) {
     var shipChoice = "";
+
+    let isHoriz = true;
+    rotate[0].addEventListener("click", (e) => {
+        e.preventDefault();
+        shipsDiv[0].style.transform = (shipsDiv[0].style.transform === "rotate(90deg)") ? "rotate(0deg)" : "rotate(90deg)"; // rotate ships visually
+        isHoriz = (isHoriz === true) ? false : true;
+    })
+
     for (let unit of grid) {
         let index = grid.indexOf(unit);
         unit.addEventListener("click", (e) => { // attaches event listeners w/ this callback to each grid unit
@@ -15,7 +25,8 @@ function placeShip(ships) {
                 if (ship.selected === "staged") shipChoice = ship;
             }
             if (shipChoice !== "") {
-                placeHoriz(shipChoice, index, unit, grid);
+                if (isHoriz) placeHoriz(shipChoice, index, unit, grid);
+                else placeVert(shipChoice, index, unit, grid);
                 // shipChoice.selection = "placed"; // different variable name, but changes original's property
                 shipChoice = "";
             } else alert("ship already placed");
@@ -35,7 +46,6 @@ function placeAIShip(ships) {
     let randPos = randArr[randIndex];
     let aiUnit = aiGrid[randPos];
     let randLoc = aiGrid.indexOf(aiUnit);
-    console.log(randIndex);
 
     for (let ship of ships) {
         while (ship.selection !== "placed") {
@@ -46,7 +56,6 @@ function placeAIShip(ships) {
             randOrient = Math.round(Math.random());
             randArr.splice(randIndex, 1); // prevent repeat random number
             randIndex = Math.floor(Math.random() * (randArr.length - 1));
-            console.log(randIndex);
             randPos = randArr[randIndex];
             aiUnit = aiGrid[randPos];
             randLoc = aiGrid.indexOf(aiUnit);
@@ -61,14 +70,16 @@ function placeHoriz(ship, index, unit, gridBoard) {
         // for-loop in series to check the x-limit
         for (let i = index; i < index + ship.length; i++) {
             if (gridBoard[i] !== undefined) {
-                if (gridBoard[i].innerHTML === "" && xyFinder(i).i === xyFinder(index).i) {
+                if (gridBoard[i].value !== "x" && xyFinder(i).i === xyFinder(index).i) {
                     checker++;
                 }
             }
         }
         for (let i = index; i < index + ship.length; i++) {
             if (checker === ship.length) {
-                gridBoard[i].innerHTML = "X";
+                if (gridBoard === grid) gridBoard[i].style.background = "rgb(141, 108, 47)";
+                gridBoard[i].value = "x";
+                ship.setPos = i;
                 ship.selection = "placed"; // set "placed" only after actual placement
             }
         }
@@ -80,14 +91,16 @@ function placeVert(ship, index, unit, gridBoard) {
     if (unit.innerHTML === "") {
         for (let j = index; j < index + 10 * ship.length; j = j + 10) {
             if (gridBoard[j] !== undefined) {
-                if (grid[j].innerHTML === "" && xyFinder(j).j === xyFinder(index).j) {
+                if (gridBoard[j].value !== "x" && xyFinder(j).j === xyFinder(index).j) {
                     checker++;
                 }
             }
         }
         for (let j = index; j < index + 10 * ship.length; j = j + 10) {
             if (checker === ship.length && grid[j] !== undefined) {
-                gridBoard[j].innerHTML = "X";
+                if (gridBoard === grid) gridBoard[j].style.background = "rgb(141, 108, 47)";
+                gridBoard[j].value = "x";
+                ship.setPos = j;
                 ship.selection = "placed"; // set "placed" only after actual placement
             }
         }
