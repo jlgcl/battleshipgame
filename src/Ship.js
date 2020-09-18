@@ -1,4 +1,5 @@
-// FF encapsulation
+// FF encapsulation - importance of this.property vs property in accessors
+
 export function Ship(ship) {
     let name = ship;
     let selected = "none";
@@ -40,6 +41,9 @@ export function Ship(ship) {
                 this.orientation = val;
             } else throw "invalid input";
         },
+        get currentPos() {
+            return this.location;
+        },
         set setPos(loc) {
             if (Number.isInteger(loc)) {
                 let newLoc = location.concat(loc);
@@ -47,7 +51,6 @@ export function Ship(ship) {
             } else if (loc === "clear") {
                 let newLoc = [];
                 this.location = newLoc;
-                console.log(location);
             } else throw "Invalid Input";
         },
         set selection(val) {
@@ -58,6 +61,7 @@ export function Ship(ship) {
         },
         name,
         length,
+        location,
         selected,
     };
 }

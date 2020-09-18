@@ -1,7 +1,5 @@
 import {
     grid,
-    board,
-    aiGrid,
     reset
 } from "./index";
 
@@ -12,6 +10,9 @@ export function boardReset(ships) {
             ship.setPos = "clear";
             ship.selection = "none";
         });
-        grid.map(unit => unit.style.background = "rgb(214, 199, 112)");
+        grid.map(unit => {
+            unit.style.background = "rgb(214, 199, 112)";
+            unit.value = "";
+        });
     })
 }

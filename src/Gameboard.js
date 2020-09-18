@@ -15,11 +15,14 @@ import {
 import {
     boardReset
 } from "./boardReset";
+import {
+    gameStart
+} from "./startControl";
 
 let shipCollection = document.getElementsByClassName("ship-item");
 let shipSelect = Array.from(shipCollection);
 
-export function Gameboard() {
+function Gameboard() {
     // ship instances - player (manual)
     let carrier = Ship("carrier");
     let battleship = Ship("battleship");
@@ -35,6 +38,7 @@ export function Gameboard() {
     let aiDestroyer = Ship("destroyer");
     let aiShips = [aiCarrier, aiBattleship, aiCruiser, aiSubmarine, aiDestroyer];
 
+    gameStart(ships, aiShips);
     shipSelector(ships);
     placeShip(ships);
     placeAIShip(aiShips);
@@ -53,4 +57,9 @@ function shipSelector(ships) {
         // REMEMBER: this function's scope is lost inside the callback (closure)
         select.addEventListener("click", clickHandler, false);
     });
+}
+
+export {
+    Gameboard,
+    shipSelect
 }
