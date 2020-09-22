@@ -70,7 +70,12 @@ span {
 .ai-item {
     background-color: #6b5d5d;
     @extend %item-template;
+}
 
+.player-item:hover,
+.ai-item:hover {
+    background-color: rgb(51, 20, 20);
+    transition: 0.3s;
 }
 
 /// ship containers ///

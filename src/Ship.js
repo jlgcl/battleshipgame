@@ -1,6 +1,11 @@
-// FF encapsulation - importance of this.property vs property in accessors
+import {
+    grid,
+    aiGrid
+} from "./index"
 
-export function Ship(ship) {
+// FF encapsulation - importance of this.property vs property in accessors
+export function Ship(playerType, ship) {
+    let type = playerType;
     let name = ship;
     let selected = "none";
     let orientation = "horizontal";
@@ -26,14 +31,17 @@ export function Ship(ship) {
     }
     return {
         get isSunk() {
-            if (this.hitCount === length) return true;
+            if (hitCount === length) return true;
             else return false;
         },
         set hit(strike) {
-            if (location.find((coord) => coord == strike)) {
+            if (location.includes(strike) && (type === "player" && strike.parentNode.className === "player-container")) {
                 // strike hits one of the placement coordinates (return true)
-                grid[coord].innerHTML = "O"; // mark the hit location
-                this.hitCount++;
+                strike.innerHTML = "&#10006"; // mark the hit location
+                hitCount++;
+            } else if (location.includes(strike) && (type === "ai" && strike.parentNode.className === "ai-container")) {
+                strike.innerHTML = "&#10006";
+                hitCount++;
             }
         },
         set orient(val) {
@@ -45,9 +53,9 @@ export function Ship(ship) {
             return this.location;
         },
         set setPos(loc) {
-            if (Number.isInteger(loc)) {
-                let newLoc = location.concat(loc);
-                this.location = newLoc;
+            if (grid.includes(loc) || aiGrid.includes(loc)) {
+                location = location.concat(loc);
+                this.location = location;
             } else if (loc === "clear") {
                 let newLoc = [];
                 this.location = newLoc;
@@ -59,6 +67,7 @@ export function Ship(ship) {
         get selection() {
             return this.selected;
         },
+        type,
         name,
         length,
         location,

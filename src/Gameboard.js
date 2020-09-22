@@ -24,19 +24,21 @@ let shipSelect = Array.from(shipCollection);
 
 function Gameboard() {
     // ship instances - player (manual)
-    let carrier = Ship("carrier");
-    let battleship = Ship("battleship");
-    let cruiser = Ship("cruiser");
-    let submarine = Ship("submarine");
-    let destroyer = Ship("destroyer");
+    let carrier = Ship("player", "carrier");
+    let battleship = Ship("player", "battleship");
+    let cruiser = Ship("player", "cruiser");
+    let submarine = Ship("player", "submarine");
+    let destroyer = Ship("player", "destroyer");
     let ships = [carrier, battleship, cruiser, submarine, destroyer];
     // ship instances - AI
-    let aiCarrier = Ship("carrier");
-    let aiBattleship = Ship("battleship");
-    let aiCruiser = Ship("cruiser");
-    let aiSubmarine = Ship("submarine");
-    let aiDestroyer = Ship("destroyer");
+    let aiCarrier = Ship("ai", "carrier");
+    let aiBattleship = Ship("ai", "battleship");
+    let aiCruiser = Ship("ai", "cruiser");
+    let aiSubmarine = Ship("ai", "submarine");
+    let aiDestroyer = Ship("ai", "destroyer");
     let aiShips = [aiCarrier, aiBattleship, aiCruiser, aiSubmarine, aiDestroyer];
+
+    aiGrid.forEach(unit => unit.style.pointerEvents = "none");
 
     gameStart(ships, aiShips);
     shipSelector(ships);

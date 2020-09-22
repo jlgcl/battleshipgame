@@ -79,7 +79,7 @@ function placeHoriz(ship, index, unit, gridBoard) {
             if (checker === ship.length) {
                 if (gridBoard === grid) gridBoard[i].style.background = "rgb(141, 108, 47)";
                 gridBoard[i].value = "x";
-                ship.setPos = i;
+                ship.setPos = gridBoard[i];
                 ship.selection = "placed"; // set "placed" only after actual placement
             }
         }
@@ -100,7 +100,7 @@ function placeVert(ship, index, unit, gridBoard) {
             if (checker === ship.length && grid[j] !== undefined) {
                 if (gridBoard === grid) gridBoard[j].style.background = "rgb(141, 108, 47)";
                 gridBoard[j].value = "x";
-                ship.setPos = j;
+                ship.setPos = gridBoard[j];
                 ship.selection = "placed"; // set "placed" only after actual placement
             }
         }

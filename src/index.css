@@ -56,6 +56,11 @@ span {
 .ai-item {
   background-color: #6b5d5d; }
 
+.player-item:hover,
+.ai-item:hover {
+  background-color: #331414;
+  transition: 0.3s; }
+
 .ships {
   display: flex;
   flex-direction: column;
