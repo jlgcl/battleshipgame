@@ -38,45 +38,50 @@ export function gameStart(ships, aiShips) {
                 restartCnt = 0;
                 placeAIShip(aiShips);
             }
-            if (startCnt == 1) shipAttack(ships, aiShips);
+            if (startCnt === 1) {
+                shipAttack(ships, aiShips);
+            }
         }
     });
 
     // restart button clicked
     restart[0].addEventListener("click", (e) => {
-        e.preventDefault();
-        startCnt = 0;
-        restartCnt = 1;
-        start[0].style.display = "unset";
-        restart[0].style.display = "none";
-        aiGrid.forEach(unit => unit.style.pointerEvents = "none");
+        location.reload();
+        //#region 
+        // e.preventDefault();
+        // startCnt = 0;
+        // restartCnt = 1;
+        // start[0].style.display = "unset";
+        // restart[0].style.display = "none";
+        // aiGrid.forEach(unit => unit.style.pointerEvents = "none");
 
-        selectionShips[0].style.display = "unset";
-        playerShips[0].style.display = "none";
-        aiShipsCol[0].style.display = "none";
+        // selectionShips[0].style.display = "unset";
+        // playerShips[0].style.display = "none";
+        // aiShipsCol[0].style.display = "none";
 
-        // clear ship positions
-        aiShips.forEach((ship) => {
-            ship.setPos = "clear";
-            ship.selection = "none";
-        });
-        ships.forEach((ship) => {
-            ship.setPos = "clear";
-            ship.selection = "none";
-        });
-        // clear grid values set during ship placement
-        grid.map((unit) => {
-            unit.style.background = "rgb(214, 199, 112)";
-            unit.innerHTML = "";
-            unit.value = "";
-            unit.style.pointerEvents = "unset";
-        });
-        aiGrid.map((unit) => {
-            unit.style.background = "#6b5d5d";
-            unit.innerHTML = "";
-            unit.value = "";
-            unit.style.pointerEvents = "unset";
-        });
+        // // clear ship positions
+        // aiShips.forEach((ship) => {
+        //     ship.setPos = "clear";
+        //     ship.selection = "none";
+        // });
+        // ships.forEach((ship) => {
+        //     ship.setPos = "clear";
+        //     ship.selection = "none";
+        // });
+        // // clear grid values set during ship placement
+        // grid.map((unit) => {
+        //     unit.style.background = "rgb(214, 199, 112)";
+        //     unit.innerHTML = "";
+        //     unit.value = "";
+        //     unit.style.pointerEvents = "unset";
+        // });
+        // aiGrid.map((unit) => {
+        //     unit.style.background = "#6b5d5d";
+        //     unit.innerHTML = "";
+        //     unit.value = "";
+        //     unit.style.pointerEvents = "unset";
+        // });
+        //#endregion
     });
 
 }

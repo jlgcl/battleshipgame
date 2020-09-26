@@ -12,6 +12,7 @@ export function Ship(playerType, ship) {
     let length = null;
     let location = []; // array of coordinates, passed in from Gameboard during placement
     let hitCount = 0;
+    let isHit = false;
     switch (ship) {
         case "carrier":
             length = 5;
@@ -34,14 +35,19 @@ export function Ship(playerType, ship) {
             if (hitCount === length) return true;
             else return false;
         },
+        get hit() {
+            return this.isHit;
+        },
         set hit(strike) {
             if (location.includes(strike) && (type === "player" && strike.parentNode.className === "player-container")) {
                 // strike hits one of the placement coordinates (return true)
                 strike.innerHTML = "&#10006"; // mark the hit location
                 hitCount++;
+                this.isHit = true;
             } else if (location.includes(strike) && (type === "ai" && strike.parentNode.className === "ai-container")) {
                 strike.innerHTML = "&#10006";
                 hitCount++;
+                this.isHit = true;
             }
         },
         set orient(val) {
@@ -68,6 +74,7 @@ export function Ship(playerType, ship) {
             return this.selected;
         },
         type,
+        isHit,
         name,
         length,
         location,
