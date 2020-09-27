@@ -45,6 +45,7 @@ span {
 .containers {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     margin-left: 40px;
     width: 80%;
 }
@@ -59,12 +60,26 @@ span {
     justify-content: center;
 }
 
+.subtitle {
+    margin-top: 5%;
+    color: rgb(196, 196, 114);
+    font-family: "Cutive Mono", monospace;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid rgb(196, 196, 114);
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 5px;
+}
+
 .board {
-    border: 1px solid;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 /// CONTAINERS ///
@@ -112,15 +127,13 @@ span {
 .playerShips {
     display: none;
     @extend %item-template;
-
+    margin-left: 10%;
 }
 
 .aiShips {
     display: none;
     @extend %item-template;
-    position: fixed;
-    right: 4em;
-    top: 13.5em;
+    margin-right: 10%;
 }
 
 /// ship items ///
